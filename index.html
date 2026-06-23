@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffa1c5">
+  <title>Feldarbeit</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <h1>Feldarbeit</h1>
+      <p id="dataInfo">Lade Daten...</p>
+    </div>
+    <button id="themeToggle" class="small-button">Farben</button>
+  </header>
+
+  <section class="controls">
+    <label>
+      Suche
+      <input id="searchInput" type="search" placeholder="Taxon, Art, Familie...">
+    </label>
+
+    <label>
+      Explo
+      <select id="exploFilter">
+        <option value="">Alle</option>
+      </select>
+    </label>
+
+    <label>
+      Plot_ID
+      <select id="plotFilter">
+        <option value="">Alle</option>
+      </select>
+    </label>
+
+    <label>
+      Familie
+      <select id="familyFilter">
+        <option value="">Alle</option>
+      </select>
+    </label>
+
+    <label>
+      Heute bis Rank
+      <input id="rankFilter" type="number" min="1" placeholder="alle">
+    </label>
+  </section>
+
+  <section id="themePanel" class="theme-panel hidden">
+    <label>
+      Akzentfarbe / Buttons
+      <input id="accentColor" type="color" value="#ffa1c5">
+    </label>
+    <label>
+      Baum-Nodes
+      <input id="nodeColor" type="color" value="#ffa1c5">
+    </label>
+    <label>
+      Species-Nodes
+      <input id="leafColor" type="color" value="#c95b8b">
+    </label>
+    <label>
+      Hintergrund
+      <input id="bgColor" type="color" value="#ffffff">
+    </label>
+    <label>
+      Karten
+      <input id="cardColor" type="color" value="#f8f4f6">
+    </label>
+    <label>
+      Text
+      <input id="textColor" type="color" value="#222222">
+    </label>
+    <button id="resetPinkTheme" type="button">Original-Pink</button>
+  </section>
+
+  <div class="button-row">
+    <button id="resetFilters">Reset</button>
+    <button id="expandAll">Alle öffnen</button>
+    <button id="collapseAll">Alle schließen</button>
+    <button id="centerTree">Baum zentrieren</button>
+    <button id="exportNotes">Notizen exportieren</button>
+    <input type="file" id="importNotesFile" accept=".json" style="display:none">
+    <button id="importNotes">Notizen importieren</button>
+  </div>
+
+  <div class="status-row">
+    <span id="matchCount">–</span>
+  </div>
+
+  <nav class="view-tabs">
+    <button id="treeTab" class="active-tab" type="button">Baum</button>
+    <button id="mapTab" type="button">Karte</button>
+  </nav>
+
+  <main class="layout">
+    <section class="tree-card" id="treePanel">
+      <div id="tree"></div>
+    </section>
+
+    <section class="map-card hidden" id="mapPanel">
+      <div class="map-toolbar">
+        <button id="loadMyMaps" type="button">MyMaps laden</button>
+        <label class="map-upload-label" for="kmlInput">KML/GeoJSON importieren</label>
+        <input id="kmlInput" type="file" accept=".kml,.geojson,.json" multiple>
+        <button id="clearMapLayers" type="button">Karte leeren</button>
+      </div>
+      <p class="small map-hint" id="mapStatus">Klicke auf einen Plot in der Karte, um den Plotfilter zu setzen. Falls Google MyMaps nicht lädt, exportiere die Karte als KML und importiere sie hier.</p>
+      <div id="map"></div>
+      <div id="plotInfo" class="plot-info hidden"></div>
+    </section>
+
+    <aside id="viewer" class="viewer-card">
+      <h2>Taxon auswählen</h2>
+      <p>Klicke im Baum auf eine Art, Gattung, Familie oder einen höheren Rank.</p>
+    </aside>
+  </main>
+
+  <div id="lightbox" class="lightbox hidden">
+    <button id="lightboxClose" type="button" aria-label="Schließen">×</button>
+    <img id="lightboxImg" alt="Großansicht">
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

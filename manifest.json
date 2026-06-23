@@ -1,0 +1,9 @@
+{
+  "name": "Pflanzenlern-App",
+  "short_name": "Pflanzen",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffa1c5",
+  "icons": []
+}
