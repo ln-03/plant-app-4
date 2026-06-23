@@ -124,10 +124,8 @@ button:hover { background: var(--accent-dark); }
 }
 
 #tree {
-  width: 100%;
-  height: calc(100vh - 240px);
-  min-height: 520px;
   overflow: hidden;
+  touch-action: none;
 }
 
 .viewer-card {
