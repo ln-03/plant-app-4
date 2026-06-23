@@ -263,10 +263,10 @@ function initTree() {
   g = svg.append("g").attr("transform", "translate(20,30)");
 
   zoomBehavior = d3.zoom()
-    .scaleExtent([0.45, 2.8])
-    .translateExtent([[-220, -1800], [2600, 2400]])
-    .extent([[0, 0], [1200, 900]])
-    .on("zoom", event => g.attr("transform", event.transform));
+  .scaleExtent([0.25, 4])
+  .translateExtent([[-2500, -3500], [6000, 5000]])
+  .extent([[0, 0], [window.innerWidth, window.innerHeight]])
+  .on("zoom", event => g.attr("transform", event.transform));
 
   svg.call(zoomBehavior);
   centerTree();
